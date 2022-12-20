@@ -63,8 +63,11 @@ public class NetSpeedLayout extends LinearLayout {
         if (currentMs == lastMs) {
             return "↑0.0KiB";
         }
-        long ms = currentMs - lastMs;
         long totalTxBytes = TrafficStats.getTotalTxBytes();
+        if (totalTxBytes == tx) {
+            return "↑0.0KiB";
+        }
+        long ms = currentMs - lastMs;
         if (this.tx <= 0) {
             this.tx = totalTxBytes;
         }
@@ -80,8 +83,11 @@ public class NetSpeedLayout extends LinearLayout {
         if (currentMs == lastMs) {
             return "↓0.0KiB";
         }
-        long ms = currentMs - lastMs;
         long totalRxBytes = TrafficStats.getTotalRxBytes();
+        if (totalRxBytes == rx) {
+            return "↓0.0KiB";
+        }
+        long ms = currentMs - lastMs;
         if (this.rx <= 0) {
             this.rx = totalRxBytes;
         }
